@@ -1,0 +1,81 @@
+//Gabriel H. S. Gava
+//22-11=2017
+//GCC 4.9
+
+//Exercicio 1 - Lista 11
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct lista {
+ int info;
+ struct lista* prox;
+};
+typedef struct lista Lista;
+
+
+//Função que Busca e Insere em uma Lista
+Lista * Busca_Insere(Lista * L, int elem, int y){
+	Lista * P, * ant, * Novo;
+
+	Novo = (Lista *)malloc(sizeof(lista));
+	Novo -> info = elem;
+
+	//Localizar a posição de inserção do nó novo
+	ant = L;
+	P = L -> prox;
+
+	while(P != NULL && P->info != y){
+		ant = P;
+		P = P -> prox;
+	}
+
+	Novo -> prox = P;
+	ant -> prox = Novo;
+return L;
+}
+
+//Função para Busca e Remoção em uma Lista
+Lista * Busca_Remove(Lista * L, int x){
+	Lista * ant, * P;
+
+  //Definindo ponteiros auxiliares
+	ant = L;
+	P = L -> prox;
+
+  //Busca do elemento X a ser removido:
+	while(P != NULL && P->info != x){
+		ant = P;
+		P = P -> prox;
+	}
+
+	if(P != NULL) {
+		ant -> prox = P -> prox;
+		free(P);
+	}
+	return L;
+}
+
+//Insere elemento na lista
+Lista* lst_insere (Lista* lst, int val){
+   Lista* novo = (Lista*) malloc(sizeof(Lista));
+   novo->info = val;
+   novo->prox = lst;
+   return novo;
+}
+
+//Não necessario para o Exercicio
+int main(void){
+/*	int x, y;
+	Lista * L;
+
+	lst_insere(L, 23);
+	lst_insere(L, 4);
+	lst_insere(L, 66);
+
+	puts("Insira [x][y] sendo x o elemento a ser inserido e y o elemento buscado:");
+	scanf("%d %d",&x,&y);
+	Busca_Insere(L, x, y); */
+
+	return 0;
+}
